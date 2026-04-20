@@ -344,40 +344,74 @@
   /* VIDEOS */
   #videos { background: var(--warm-white); }
   .videos-intro { max-width: 500px; color: var(--ink-light); font-size: 14px; margin-bottom: 2.5rem; line-height: 1.8; }
-  .videos-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px;
-    background: var(--border); border: 1px solid var(--border);
+  .video-embed-wrapper {
+    max-width: 860px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: #000;
   }
-  .video-card {
+  .video-embed-wrapper iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+  .video-info {
+    padding: 1.5rem 2rem;
     background: var(--warm-white);
-    padding: 2rem; cursor: none;
-    transition: background 0.3s;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .video-info-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--gold); color: #fff;
+    font-size: 13px; flex-shrink: 0; margin-top: 2px;
+  }
+  .video-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; color: var(--ink); margin-bottom: 4px;
+  }
+  .video-info-desc { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
+
+  /* PROJECT IMAGES */
+  .project-img {
+    width: 100%; height: 160px;
+    overflow: hidden; margin-bottom: 1.25rem;
+    position: relative; background: var(--gold-light);
+  }
+  .project-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(25%) brightness(0.95);
+    transition: transform 0.45s ease, filter 0.35s ease;
+    display: block;
+  }
+  .project-card:hover .project-img img {
+    transform: scale(1.06);
+    filter: grayscale(0%) brightness(1);
+  }
+
+  /* ABOUT IMAGE */
+  .about-img-block {
+    width: 100%; overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
     position: relative;
   }
-  .video-card:hover { background: var(--cream); }
-  .video-placeholder {
-    height: 140px; background: var(--gold-light);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.25rem; position: relative; overflow: hidden;
+  .about-img-block img {
+    width: 100%; height: 220px;
+    object-fit: cover; display: block;
+    filter: grayscale(15%);
+    transition: filter 0.3s;
   }
-  .video-play {
-    width: 44px; height: 44px;
-    border: 1px solid rgba(184,150,90,0.5);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 14px;
-    transition: transform 0.25s, background 0.25s;
-  }
-  .video-card:hover .video-play {
-    transform: scale(1.1);
-    background: var(--gold); color: #fff;
-  }
-  .video-title { font-size: 14px; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
-  .video-desc { font-size: 12px; color: var(--ink-muted); }
-  .videos-note {
-    margin-top: 1.5rem; padding: 1rem 1.25rem;
-    background: var(--gold-light); font-size: 13px; color: var(--ink-light);
-    border-left: 2px solid var(--gold);
+  .about-img-block:hover img { filter: grayscale(0%); }
+  .about-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 6px 12px;
+    background: rgba(26,23,20,0.55);
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-light);
   }
 
   /* CONTACT */
@@ -534,6 +568,10 @@
     <p class="about-detail reveal"><strong>Languages spoken:</strong> English · Malayalam · Tamil · Hindi</p>
   </div>
   <div class="about-right reveal">
+    <div class="about-img-block">
+      <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&q=80&fit=crop" alt="Engineering workspace" loading="lazy" />
+      <div class="about-img-label">Design &amp; Engineering Workspace</div>
+    </div>
     <div class="section-header">
       <span class="section-num">Education</span>
     </div>
@@ -613,31 +651,49 @@
   </div>
   <div class="projects-grid">
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Della Luxury Safe" loading="lazy" />
+      </div>
       <div class="project-year">2026</div>
       <div class="project-name">Della Luxury Safe</div>
       <span class="project-tag">Luxury Mechanism</span>
     </div>
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop" alt="Motorized Luxury Table" loading="lazy" />
+      </div>
       <div class="project-year">2025</div>
       <div class="project-name">Alexa-Controlled Motorized Luxury Table</div>
       <span class="project-tag">Mechatronics</span>
     </div>
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&q=80&fit=crop" alt="Luxury Word Clock" loading="lazy" />
+      </div>
       <div class="project-year">2025</div>
       <div class="project-name">Luxury Word Clock</div>
       <span class="project-tag">Product Design</span>
     </div>
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80&fit=crop" alt="Automated Blood Component Extractor" loading="lazy" />
+      </div>
       <div class="project-year">2024</div>
       <div class="project-name">Automated Blood Component Extractor</div>
       <span class="project-tag">Biomedical</span>
     </div>
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=600&q=80&fit=crop" alt="Blood Collection Monitor" loading="lazy" />
+      </div>
       <div class="project-year">2024</div>
       <div class="project-name">Blood Collection Monitor</div>
       <span class="project-tag">Medical Device</span>
     </div>
     <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80&fit=crop" alt="Hybrid Composites Research" loading="lazy" />
+      </div>
       <div class="project-year">2024</div>
       <div class="project-name">Hybrid Composites: Cotton &amp; Jute Fiber-Polymer Matrix</div>
       <span class="project-tag">Research</span>
@@ -724,30 +780,20 @@
     <span class="section-num">05 — Videos</span>
     <h2 class="section-title">Motion &amp;<br><em>process reels</em></h2>
   </div>
-  <p class="videos-intro reveal">Showcase your design process, product demos, and engineering walkthroughs. Embed YouTube or Vimeo links directly here.</p>
-  <div class="videos-grid">
-    <div class="video-card">
-      <div class="video-placeholder">
-        <div class="video-play">▶</div>
+  <div class="video-embed-wrapper reveal">
+    <iframe
+      src="https://www.youtube.com/embed/eUqeuTpe3XQ?start=4"
+      title="Abhilash Chandran — Design Showcase"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+    <div class="video-info">
+      <div class="video-info-badge">▶</div>
+      <div>
+        <div class="video-info-title">Design Showcase</div>
+        <div class="video-info-desc">Engineering process &amp; product walkthrough · YouTube</div>
       </div>
-      <div class="video-title">Design Process Walkthrough</div>
-      <div class="video-desc">Replace with your YouTube embed</div>
     </div>
-    <div class="video-card">
-      <div class="video-placeholder">
-        <div class="video-play">▶</div>
-      </div>
-      <div class="video-title">Product Demo Reel</div>
-      <div class="video-desc">Replace with your YouTube embed</div>
-    </div>
-    <div class="video-card">
-      <div class="video-placeholder">
-        <div class="video-play">▶</div>
-      </div>
-      <div class="video-title">Engineering Showcase</div>
-      <div class="video-desc">Replace with your YouTube embed</div>
-    </div>
-  </div>
   </div>
 </section>
 
