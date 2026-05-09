@@ -92,10 +92,19 @@
     border: 1px solid rgba(184,150,90,0.25);
     box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.2);
     cursor: none;
+    /* show/hide transition */
+    opacity: 1;
+    pointer-events: auto;
     transition:
+      opacity 0.35s ease,
       background var(--theme-transition),
       border-color var(--theme-transition),
       box-shadow var(--theme-transition);
+  }
+
+  .pill-toggle.pill-hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
   [data-theme="dark"] .pill-toggle {
@@ -782,8 +791,8 @@
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
-    .pill-toggle { top: 78px; padding: 8px 18px 8px 14px; gap: 10px; }
-    .pill-label { font-size: 9px; letter-spacing: 0.14em; }
+    .pill-toggle { top: auto; bottom: 2rem; left: 50%; transform: translateX(-50%); padding: 9px 20px 9px 16px; gap: 10px; }
+    .pill-label { display: none; }
   }
 </style>
 </head>
@@ -1212,8 +1221,22 @@
   }
   spawnParticles();
 
+  /* ─── HIDE PILL AFTER HERO ─── */
+  const pillToggle = document.getElementById('themeToggle');
+  const heroSection = document.getElementById('home');
+  function updatePillVisibility() {
+    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+    if (window.scrollY > heroBottom - 120) {
+      pillToggle.classList.add('pill-hidden');
+    } else {
+      pillToggle.classList.remove('pill-hidden');
+    }
+  }
+  window.addEventListener('scroll', updatePillVisibility, { passive: true });
+  updatePillVisibility();
+
   /* ─── THEME TOGGLE with RIPPLE ─── */
-  const themeToggle = document.getElementById('themeToggle');
+  const themeToggle = pillToggle;
   const themeRipple = document.getElementById('themeRipple');
   const toggleLabel = document.getElementById('toggleLabel');
   let isDark = false;
